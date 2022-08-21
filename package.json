@@ -1,0 +1,29 @@
+{
+  "name": "wschedule",
+  "version": "0.1.8",
+  "private": false,
+  "main": "./dist/wschedule.umd.js",
+  "author": {
+    "name": "WQ"
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build-bundle": "vue-cli-service build --target lib --name wschedule ./src/components/index.js",
+    "lib": "vue-cli-service build --target lib ./src/components/index.js"
+  },
+  "dependencies": {
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "~4.5.0",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
