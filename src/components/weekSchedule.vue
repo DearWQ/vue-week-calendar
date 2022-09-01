@@ -49,36 +49,36 @@
                   <!-- v-if="month" 去除数据处理的时候移除数组第一个为empty的问题-->
                   <div v-if="month" :key="`month${m_index}`" class="w-things" @click="handleCardDetail(month,period)">
                     <!-- 循环每个时间段的计划-->
-                    <template v-for="(row,t_index) of period.schedule">
-                      <!-- 根据日期和计划的日期匹配 显示 然后根据状态显示进行中 已过期 未开始-->
-                      <template v-if="!period.isExpend">
-                        <div v-if="row.date===month.date&&t_index<2"
-                             :key="`thing${t_index}`"
-                             class="w-thing-item"
-                             @click="handleDetail(row)"
-                             :style="{background: cardStatus[row.status].color}">
-                          <slot name="thing" :row="row"></slot>
+                    <template v-for="(card,t_index) of period.schedule">
+                      <template v-for="(single,sIndex) in card[month.date]">
+                        <template v-if="!card.isExpend">
+                          <div v-if="single.date===month.date&&sIndex<hasNumExpend"
+                               :key="`thing${sIndex}`"
+                               class="w-thing-item"
+                               @click="handleDetail(single)"
+                               :style="{background: cardStatus[single.status].color}">
+                            <slot name="thing" :row="single"></slot>
+                          </div>
+                        </template>
+                        <template v-if="card.isExpend">
+                          <div v-if="single.date===month.date"
+                               :key="`thing${sIndex}`"
+                               class="w-thing-item"
+                               @click="handleDetail(single)"
+                               :style="{background: cardStatus[single.status].color}">
+                            <slot name="thing" :row="single"></slot>
+                          </div>
+                        </template>
+                        <div class="w_expand"
+                             v-if="card[month.date].length>hasNumExpend&&(card[month.date].length-1)===sIndex&&!card.isExpend&&single.date===month.date"
+                             @click="handleExpand(card)">展开
+                        </div>
+                        <div class="w_shrink"
+                             v-if="card[month.date].length>hasNumExpend&&(card[month.date].length-1)===sIndex&&card.isExpend&&single.date===month.date"
+                             @click="handleExpand(card)">收缩
                         </div>
                       </template>
-                      <template v-if="period.isExpend">
-                        <div v-if="row.date===month.date"
-                             :key="`thing${t_index}`"
-                             class="w-thing-item"
-                             @click="handleDetail(row)"
-                             :style="{background: cardStatus[row.status].color}">
-                          <slot name="thing" :row="row"></slot>
-                        </div>
-                      </template>
-                      <div class="w_expand"
-                           v-if="period.schedule.length>2&&(period.schedule.length-1)===t_index&&!period.isExpend&&row.date===month.date"
-                           @click="handleExpand(period)">展开
-                      </div>
-                      <div class="w_shrink"
-                           v-if="period.schedule.length>2&&(period.schedule.length-1)===t_index&&period.isExpend&&row.date===month.date"
-                           @click="handleExpand(period)">收缩
-                      </div>
                     </template>
-
                   </div>
                 </template>
               </div>
@@ -101,6 +101,7 @@ export default {
       type: Array,
       default: []
     },
+    //卡片状态
     cardStatus: {
       type: Object,
       default: () => {
@@ -120,9 +121,14 @@ export default {
         }
       }
     },
+    //第一列是星期几
     isFirstDayOfMondayOrSunday: {
       type: Number,
       default: 1,
+    },
+    hasNumExpend:{
+      type:Number,
+      default:2
     }
   },
   data () {
@@ -144,8 +150,6 @@ export default {
           const arr1 = arr.slice(val - 1)
           const arr2 = arr.slice(0, val - 1)
           this.weeks = ['时段', ...arr1, ...arr2]
-          console.log('周排列', this.weeks)
-
         }
       },
       immediate: true
@@ -480,5 +484,6 @@ ul, li {
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }
 </style>

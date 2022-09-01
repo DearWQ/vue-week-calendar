@@ -9,7 +9,7 @@ npm i wschedule -S
 ``` html
 <template>
   <div id="app">
-    <WSchedule :planList="timePeriodList" :isFirstDayOfMondayOrSunday="5" @handleDetail="handleDetail" @handleCardDetail="handleCardDetail" @changeWeek="changeWeek">
+    <WSchedule :planList="timePeriodList" :isFirstDayOfMondayOrSunday="5" :hasNumExpend="3" @handleDetail="handleDetail" @handleCardDetail="handleCardDetail" @changeWeek="changeWeek">
       <template v-slot:thing="{row}">
         <span>时段：{{ row.timePeriod }}</span>
         <span>课程：{{ row.course }}</span>
@@ -196,6 +196,7 @@ export default {
 |data|显示数据：timePeriod:必须存在的字段；schedule：必须存在{内容：date为日期必须存在且格式为2022-01-29}|Array|--|--
 |cardStatus|卡片内容对应状态信息颜色：title对应状态 color对应背景颜色|Object|--|{1: {title: '已过期',color: '#8E8E93'},2: { title: '进行中',color: '#FF6200'},3: {title: '未开始',color: '#3291F8'},}
 |isFirstDayOfMondayOrSunday|第一天显示的是周几|Number|--|1: 周一,2: 周二,3: 周三,4: 周四,5: 周五,6: 周六,7: 周日,|
+|hasNumExpend|默认显示几个数据，超出显示展开与缩放|Number|--|2
 ### Events
 |名字|说明|类型|可选值|默认值|
 |---|---|---|---|---|
