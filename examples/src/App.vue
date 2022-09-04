@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <WSchedule :planList="timePeriodList" :isFirstDayOfMondayOrSunday="5" @handleDetail="handleDetail" @handleCardDetail="handleCardDetail" @changeWeek="changeWeek">
+    <WSchedule :planList="timePeriodList" :isFirstDayOfMondayOrSunday="7" @handleDetail="handleDetail" @handleCardDetail="handleCardDetail" @changeWeek="changeWeek">
       <template v-slot:thing="{row}">
         <span>时段：{{ row.timePeriod }}</span>
         <span>课程：{{ row.course }}</span>
@@ -13,12 +13,15 @@
 
 <script>
 
+// import Vue from 'vue'
+// import WSchedule from 'wschedule'
+// import "wschedule/dist/wschedule.css";
+// Vue.use(WSchedule)
 import WSchedule from '../../src/components/weekSchedule'
-
 export default {
   name: 'App',
   components: {
-    WSchedule
+    WSchedule,
   },
   data() {
     /**

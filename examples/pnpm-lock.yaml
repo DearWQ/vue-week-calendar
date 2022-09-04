@@ -11,10 +11,12 @@ specifiers:
   eslint-plugin-vue: ^8.0.3
   vue: ^2.6.14
   vue-template-compiler: ^2.6.14
+  wschedule: ^0.1.9
 
 dependencies:
   core-js: 3.24.1
   vue: 2.7.9
+  wschedule: 0.1.9
 
 devDependencies:
   '@babel/core': 7.18.10
@@ -6424,6 +6426,12 @@ packages:
       utf-8-validate:
         optional: true
     dev: true
+
+  /wschedule/0.1.9:
+    resolution: {integrity: sha512-ila8p6tyEsA/3+l6hrLgFjFE3EIJad3OEqB3b5HhixGrpyOXl9Ob+CTiE9jVMw0U1BizDAm8nCWR4n4AX0b4kw==}
+    dependencies:
+      vue: 2.7.9
+    dev: false
 
   /y18n/5.0.8:
     resolution: {integrity: sha512-0pfFzegeDWJHJIAmTLRP2DwHjdF5s7jo9tuztdQxAhINCdvS+3nGINqPd00AphqJR/0LhANUS6/+7SCb98YOfA==}

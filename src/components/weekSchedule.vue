@@ -139,12 +139,12 @@ export default {
   watch: {
     isFirstDayOfMondayOrSunday: {
       handler (val) {
-        if (val>1) {
+        if (val > 1) {
           let arr = ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
           const arr1 = arr.slice(val - 1)
-          const arr2 = arr.slice(0,val - 1)
-          this.weeks=['时段',...arr1,...arr2]
-          console.log("周排列",this.weeks)
+          const arr2 = arr.slice(0, val - 1)
+          this.weeks = ['时段', ...arr1, ...arr2]
+          console.log('周排列', this.weeks)
 
         }
       },
@@ -165,20 +165,25 @@ export default {
      */
     getWeek (time) {
       this.curDate = new Date(time)
-      if(this.isFirstDayOfMondayOrSunday<7&&this.isFirstDayOfMondayOrSunday>1){
-        const week = time.getDay() - 1;
-        time = this.addDate(time, week * -(this.isFirstDayOfMondayOrSunday-1));
+      //当前是周几
+      const whichDay = time.getDay()
+      let num = 0
+      if (this.isFirstDayOfMondayOrSunday <= whichDay) {
+        num = this.isFirstDayOfMondayOrSunday
+      } else {
+        num = this.isFirstDayOfMondayOrSunday - 7
       }
-      const num=this.isFirstDayOfMondayOrSunday<7?-1:1
+      const weekDay = time.getDay() - num
+      time = this.addDate(time, weekDay * -1)
       for (let i = 0; i < 7; i++) {
-        const { year, month, day } = formatDate(i === 0 ? time : this.addDate(time, num))
+        const { year, month, day } = formatDate(i === 0 ? time : this.addDate(time, 1))
         this.months.push({
           date: `${year}-${month}-${day}`,
           showDate: `${month}-${day}`,
           timestamp: new Date(`${year}-${month}-${day}`).getTime()
         })
       }
-      this.months.sort((a,b)=>a.timestamp-b.timestamp)
+      this.months.sort((a, b) => a.timestamp - b.timestamp)
       delete this.months[0]
       this.todayDate = `${this.months[1].date} ~ ${this.months[this.months.length - 1].date}`
     },

@@ -1,10 +1,14 @@
 {
   "name": "wschedule",
-  "version": "0.1.8",
+  "version": "1.0.1",
   "private": false,
   "main": "./dist/wschedule.umd.js",
   "author": {
     "name": "WQ"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DearWQ/vue-week-calendar"
   },
   "files": [
     "dist/*",
