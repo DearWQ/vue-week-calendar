@@ -32,135 +32,127 @@ export default {
      * 获取当天时间
      * @returns {string}
      */
-    function getCurDay(){
+    function getCurDay(num = 0) {
       var datetime = new Date();
       var year = datetime.getFullYear();
       var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-      var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-      return `${year}-${month}-${date}`
+      let day = datetime.getDate()
+      if ((day + num) > 0) {
+        day = (day + num) < 10 ? "0" + (datetime.getDate() + num) : datetime.getDate() + num;
+      } else {
+        day = (day - num) < 10 ? "0" + (datetime.getDate() - num) : datetime.getDate() - num;
+      }
+      return `${year}-${month}-${day}`
     }
     return {
       timePeriodList: [
         {
-          timePeriod: '08:00~10:00',
-          isExpend:false,
+          timePeriod: '8:00~10:00',
           schedule: [
             {
-              timePeriod: '08:00~10:00',
-              date: getCurDay(),
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 1,
-            }, {
-              timePeriod: '08:00~10:00',
-              date: getCurDay(),
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 1,
-            }, {
-              timePeriod: '08:00~10:00',
-              date: getCurDay(),
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 1,
-            }, {
-              timePeriod: '08:00~10:00',
-              date: getCurDay(),
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 1,
-            }, {
-              timePeriod: '08:00~10:00',
-              date: getCurDay(),
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 1,
-            }, {
-              timePeriod: '08:00~10:00',
-              date: getCurDay(),
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 1,
+              isExpend: false,
+              [getCurDay()]: [
+                {
+                  timePeriod: '8:00~10:00',
+                  date: getCurDay(),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 1,
+                },
+                {
+                  timePeriod: '8:00~10:00',
+                  date: getCurDay(),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 2,
+                },
+                {
+                  timePeriod: '8:00~10:00',
+                  date: getCurDay(),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 3,
+                },
+              ],
             },
             {
-              date: getCurDay(),
-              timePeriod: '08:00~10:00',
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 2,
-            },
-            {
-              date: getCurDay(),
-              timePeriod: '08:00~10:00',
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 3,
+              isExpend: false,
+              [getCurDay(-1)]: [
+                {
+                  id: 1,
+                  timePeriod: '8:00~10:00',
+                  date: getCurDay(-1),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 1,
+                },
+              ]
             }
-
           ]
         },
         {
-          timePeriod: '10:00~12:00',
-          isExpend:false,
+          timePeriod: '12:00~14:00',
           schedule: [
             {
-              timePeriod: '10:00~12:00',
-              date: getCurDay(),
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 1,
+              isExpend: false,
+              [getCurDay()]: [
+                {
+                  timePeriod: '12:00~14:00',
+                  date: getCurDay(),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 2,
+                },
+                {
+                  timePeriod: '12:00~14:00',
+                  date: getCurDay(),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 3,
+                },
+              ],
             },
             {
-              date: getCurDay(),
-              timePeriod: '10:00~12:00',
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 2,
-            },
-            {
-              date: getCurDay(),
-              timePeriod: '10:00~12:00',
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 3,
+              isExpend: false,
+              [getCurDay(-1)]: [
+                {
+                  timePeriod: '12:00~14:00',
+                  date: getCurDay(-1),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 1,
+                },
+                {
+                  timePeriod: '实验室1',
+                  date: getCurDay(-1),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 1,
+                },
+                {
+                  timePeriod: '实验室1',
+                  date: getCurDay(-1),
+                  course: '大学英语',
+                  watchman: '井底的蜗牛',
+                  place: '测试地点',
+                  status: 1,
+                },
+              ]
             }
-
           ]
         },
         {
           timePeriod: '14:00~16:00',
-          isExpend:false,
-          schedule: [
-            {
-              timePeriod: '14:00~16:00',
-              date: getCurDay(),
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 1,
-            },
-            {
-              date: getCurDay(),
-              timePeriod: '14:00~16:00',
-              course: '大学英语',
-              watchman: 'wqq',
-              place: 'ces',
-              status: 2,
-            },
-
-          ]
-        }
+          schedule: []
+        },
       ],
     }
   },
